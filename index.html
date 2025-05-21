@@ -21,6 +21,14 @@
     h1, h2, h3 {
       font-family: 'Playfair Display', serif;
     }
+
+    #backToTop {
+      display: none;
+    }
+
+    #backToTop.show {
+      display: flex;
+    }
   </style>
 </head>
 <body class="bg-black text-white">
@@ -109,8 +117,8 @@
       <h2 class="text-3xl text-gold font-semibold mb-6">Contact</h2>
       <div class="grid md:grid-cols-2 gap-10">
         <div class="text-lg text-gray-300 space-y-4">
-          <p><strong>Email:</strong> preetmore@example.com</p>
-          <p><strong>Phone:</strong> +91-XXXXXXXXXX</p>
+          <p><strong>Email:</strong> preetmore1456@gmail.com</p>
+          <p><strong>Phone:</strong> 7709739684</p>
           <p><strong>Address:</strong> Dahanu, Maharashtra, India</p>
         </div>
         <div>
@@ -125,6 +133,11 @@
       </div>
     </div>
   </section>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" onclick="scrollToTop()" class="fixed bottom-6 right-6 bg-gold text-black font-bold p-3 rounded-full shadow-lg hover:bg-yellow-500 transition-all duration-300 z-50 hidden items-center justify-center">
+    ↑
+  </button>
 
   <!-- Footer -->
   <footer class="bg-[#0d0d0d] border-t border-gold text-white py-6 text-center mt-8">
@@ -145,6 +158,23 @@
           }
         }
       }
+    }
+  </script>
+
+  <!-- Back to Top Script -->
+  <script>
+    const btn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btn.classList.add('show');
+      } else {
+        btn.classList.remove('show');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 </body>
