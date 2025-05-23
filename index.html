@@ -1,239 +1,2302 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" class="light">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Preet More | Luxury CV</title>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-      background-color: #0e0e0e;
-      color: #f5f5f5;
-    }
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-    }
+    <meta name="description" content="Portfolio of Preet More, Electronics and Computer Science student from Dahanu">
 
-    #backToTop {
-      display: none;
-    }
+    <meta name="keywords" content="Preet More, portfolio, electronics, computer science, student, Dahanu">
 
-    #backToTop.show {
-      display: flex;
-    }
-  </style>
+    <meta name="author" content="Preet More">
+
+    <title>Preet More | Portfolio</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+
+        tailwind.config = {
+
+            darkMode: 'class',
+
+            theme: {
+
+                extend: {
+
+                    animation: {
+
+                        'fade-in': 'fadeIn 1s ease-in-out',
+
+                        'slide-up': 'slideUp 0.5s ease-out',
+
+                    },
+
+                    keyframes: {
+
+                        fadeIn: {
+
+                            '0%': { opacity: '0' },
+
+                            '100%': { opacity: '1' },
+
+                        },
+
+                        slideUp: {
+
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        
+
+        body {
+
+            font-family: 'Poppins', sans-serif;
+
+            transition: background-color 0.3s, color 0.3s;
+
+        }
+
+        
+
+        .hamburger {
+
+            cursor: pointer;
+
+            width: 24px;
+
+            height: 24px;
+
+            transition: all 0.25s;
+
+            position: relative;
+
+        }
+
+        
+
+        .hamburger-top,
+
+        .hamburger-middle,
+
+        .hamburger-bottom {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 24px;
+
+            height: 2px;
+
+            background: #333;
+
+            transform: rotate(0);
+
+            transition: all 0.5s;
+
+        }
+
+        
+
+        .hamburger-middle {
+
+            transform: translateY(7px);
+
+        }
+
+        
+
+        .hamburger-bottom {
+
+            transform: translateY(14px);
+
+        }
+
+        
+
+        .open .hamburger-top {
+
+            transform: rotate(45deg) translateY(6px) translate(6px);
+
+        }
+
+        
+
+        .open .hamburger-middle {
+
+            display: none;
+
+        }
+
+        
+
+        .open .hamburger-bottom {
+
+            transform: rotate(-45deg) translateY(6px) translate(-6px);
+
+        }
+
+        
+
+        .card-hover:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+        }
+
+        
+
+        .loading-spinner {
+
+            width: 50px;
+
+            height: 50px;
+
+            border: 5px solid #f3f3f3;
+
+            border-top: 5px solid #3b82f6;
+
+            border-radius: 50%;
+
+            animation: spin 1s linear infinite;
+
+        }
+
+        
+
+        @keyframes spin {
+
+            0% { transform: rotate(0deg); }
+
+            100% { transform: rotate(360deg); }
+
+        }
+
+        
+
+        .scroll-to-top {
+
+            position: fixed;
+
+            bottom: 20px;
+
+            right: 20px;
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: #3b82f6;
+
+            color: white;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            transition: opacity 0.3s;
+
+            z-index: 1000;
+
+        }
+
+        
+
+        .scroll-to-top.visible {
+
+            opacity: 1;
+
+        }
+
+        
+
+        .cart-sidebar {
+
+            transform: translateX(100%);
+
+            transition: transform 0.3s ease-in-out;
+
+        }
+
+        
+
+        .cart-sidebar.open {
+
+            transform: translateX(0);
+
+        }
+
+        
+
+        .product-card:hover .product-overlay {
+
+            opacity: 1;
+
+        }
+
+        
+
+        .product-overlay {
+
+            opacity: 0;
+
+            transition: opacity 0.3s;
+
+        }
+
+        
+
+        /* Dark mode styles */
+
+        .dark .hamburger-top,
+
+        .dark .hamburger-middle,
+
+        .dark .hamburger-bottom {
+
+            background: #fff;
+
+        }
+
+    </style>
+
+    <!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+
+    <script>
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-XXXXXXXXXX');
+
+    </script>
+
 </head>
-<body class="bg-black text-white">
 
-  <!-- Navbar -->
-  <header class="bg-[#1a1a1a] shadow-lg sticky top-0 z-50 border-b border-gold">
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-3xl text-gold font-semibold tracking-widest">Preet More</h1>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 min-h-screen">
 
-      <!-- Hamburger Button (shown on small screens) -->
-      <button id="menuButton" aria-label="Toggle menu" class="md:hidden text-gold focus:outline-none">
-        <!-- Hamburger icon -->
-        <svg id="menuOpenIcon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
-        </svg>
-        <!-- Close icon, hidden by default -->
-        <svg id="menuCloseIcon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+    <!-- Loading Spinner -->
 
-      <!-- Nav Links -->
-      <ul id="navLinks" class="hidden md:flex gap-6 text-sm font-medium text-gray-300">
-        <li><a href="#welcome" class="hover:text-gold transition">Welcome</a></li>
-        <li><a href="#about" class="hover:text-gold transition">About</a></li>
-        <li><a href="#achievements" class="hover:text-gold transition">Achievements</a></li>
-        <li><a href="#goals" class="hover:text-gold transition">Goals</a></li>
-        <li><a href="#personal" class="hover:text-gold transition">Personal</a></li>
-        <li><a href="#contact" class="hover:text-gold transition">Contact</a></li>
-      </ul>
+    <div id="loading" class="fixed inset-0 bg-white dark:bg-gray-900 flex items-center justify-center z-50">
+
+        <div class="loading-spinner"></div>
+
+    </div>
+
+
+
+    <!-- Scroll to Top Button -->
+
+    <div id="scrollToTop" class="scroll-to-top">
+
+        <i class="fas fa-arrow-up"></i>
+
+    </div>
+
+
+
+    <!-- Navigation -->
+
+    <nav class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40">
+
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+
+            <a href="#" class="text-2xl font-bold text-blue-600 dark:text-blue-400">Preet More</a>
+
+            
+
+            <!-- Desktop Navigation -->
+
+            <div class="hidden md:flex space-x-8">
+
+                <a href="#home" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</a>
+
+                <a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400 transition">About</a>
+
+                <a href="#achievements" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Achievements</a>
+
+                <a href="#goals" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Future Goals</a>
+
+                <a href="#personal" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Personal Side</a>
+
+                <a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
+
+                <a href="#shop" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Shop</a>
+
+            </div>
+
+            
+
+            <!-- Dark Mode Toggle -->
+
+            <div class="flex items-center space-x-4">
+
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+
+                    <i class="fas fa-moon dark:hidden"></i>
+
+                    <i class="fas fa-sun hidden dark:block"></i>
+
+                </button>
+
+                
+
+                <!-- Mobile Menu Button -->
+
+                <div id="hamburger" class="hamburger md:hidden">
+
+                    <span class="hamburger-top"></span>
+
+                    <span class="hamburger-middle"></span>
+
+                    <span class="hamburger-bottom"></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        <!-- Mobile Navigation -->
+
+        <div id="mobileMenu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+
+                <a href="#home" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition">Home</a>
+
+                <a href="#about" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition">About</a>
+
+                <a href="#achievements" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition">Achievements</a>
+
+                <a href="#goals" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition">Future Goals</a>
+
+                <a href="#personal" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition">Personal Side</a>
+
+                <a href="#contact" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
+
+                <a href="#shop" class="py-2 hover:text-blue-600 dark:hover:text-blue-400 transition">Shop</a>
+
+            </div>
+
+        </div>
+
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-[#1a1a1a] px-6 pb-6">
-      <ul class="flex flex-col gap-4 text-gray-300 text-lg font-medium">
-        <li><a href="#welcome" class="hover:text-gold transition block" onclick="closeMenu()">Welcome</a></li>
-        <li><a href="#about" class="hover:text-gold transition block" onclick="closeMenu()">About</a></li>
-        <li><a href="#achievements" class="hover:text-gold transition block" onclick="closeMenu()">Achievements</a></li>
-        <li><a href="#goals" class="hover:text-gold transition block" onclick="closeMenu()">Goals</a></li>
-        <li><a href="#personal" class="hover:text-gold transition block" onclick="closeMenu()">Personal</a></li>
-        <li><a href="#contact" class="hover:text-gold transition block" onclick="closeMenu()">Contact</a></li>
-      </ul>
-    </div>
-  </header>
 
-  <!-- Welcome Section -->
-  <section id="welcome" class="py-20 bg-[#0e0e0e] text-center">
-    <div class="container mx-auto px-4">
-      <h2 class="text-5xl font-bold text-gold mb-4">Welcome, I'm Preet More</h2>
-      <p class="text-gray-400 text-lg mb-8">Crafting elegant digital solutions with purpose and precision.</p>
-      <img src="my-avatar.jpg" alt="Profile Photo" class="mx-auto w-44 h-44 rounded-full border-4 border-gold shadow-xl mb-6" />
-      <video controls class="mx-auto w-full max-w-md rounded-lg border-2 border-gold shadow">
-        <source src="videos/intro.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
 
-  <!-- About Me -->
-  <section id="about" class="py-20 bg-[#111111]">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl text-gold font-semibold mb-6">About Me</h2>
-      <div class="space-y-3 text-lg text-gray-300">
-        <p><strong>Name:</strong> Preet More</p>
-        <p><strong>Location:</strong> Dahanu, Maharashtra, India</p>
-        <p><strong>Education:</strong> BE in Electronics and Computer Science</p>
-        <p><strong>Languages:</strong> English, Hindi, Marathi</p>
-      </div>
-    </div>
-  </section>
+    <!-- Main Content -->
 
-  <!-- Achievements -->
-  <section id="achievements" class="py-20 bg-[#1a1a1a]">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl text-gold font-semibold mb-6">Achievements</h2>
-      <ul class="list-disc list-inside space-y-3 text-lg text-gray-300">
-        <li>🏆 Winner in cricket, 2024</li>
-        <li>🎓 Winner in mini project – Waste Segregation</li>
-        <li>🚀 Built a mini e-commerce site</li>
-      </ul>
-    </div>
-  </section>
+    <main>
 
-  <!-- Goals -->
-  <section id="goals" class="py-20 bg-[#111111]">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl text-gold font-semibold mb-6">Future Goals</h2>
-      <p class="text-lg text-gray-300 leading-relaxed">
-        I aspire to become a full-stack web developer, contribute to open-source, build meaningful tech, and mentor new developers with passion and precision.
-      </p>
-    </div>
-  </section>
+        <!-- Hero Section -->
 
-  <!-- Personal Section -->
-  <section id="personal" class="py-20 bg-[#1a1a1a]">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl text-gold font-semibold mb-6">Personal Interests</h2>
-      <div class="text-lg text-gray-300 space-y-3">
-        <p><strong>Hobbies:</strong> Playing cricket, gaming</p>
-        <p><strong>Role Models:</strong> Virat Kohli, A.P.J. Abdul Kalam</p>
-        <p><strong>Favorite Books:</strong> “Atomic Habits”, “The Lean Startup”</p>
-        <p><strong>Websites I Love:</strong> Dev.to, Hashnode, Product Hunt</p>
-        <p><strong>Startups I Admire:</strong> Notion, Figma</p>
-        <p><strong>Volunteering:</strong> Teaching tech skills to underprivileged kids at NGOs</p>
-      </div>
-    </div>
-  </section>
+        <section id="home" class="py-20 px-4 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-700 dark:to-purple-800 text-white">
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-[#111111]">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl text-gold font-semibold mb-6">Contact</h2>
-      <div class="grid md:grid-cols-2 gap-10">
-        <div class="text-lg text-gray-300 space-y-4">
-          <p><strong>Email:</strong> preetmore1456@gmail.com</p>
-          <p><strong>Phone:</strong> 7709739684</p>
-          <p><strong>Address:</strong> Dahanu, Maharashtra, India</p>
+            <div class="container mx-auto flex flex-col md:flex-row items-center">
+
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
+
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hello, I'm <span class="text-yellow-300">Preet More</span></h1>
+
+                    <p class="text-xl mb-6">Electronics & Computer Science Student | Tech Enthusiast | Problem Solver</p>
+
+                    <p class="text-lg mb-8">Welcome to my portfolio! I'm a passionate fresher from Dahanu eager to explore the world of technology and innovation.</p>
+
+                    <div class="flex space-x-4">
+
+                        <a href="#contact" class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">Contact Me</a>
+
+                        <a href="#about" class="border-2 border-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-blue-600 transition">Learn More</a>
+
+                    </div>
+
+                </div>
+
+                <div class="md:w-1/2 flex flex-col items-center animate-slide-up">
+
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6">
+
+                        <img src="https://i.postimg.cc/hPjzMMzr/Whats-App-Image-2025-05-23-at-1-48-41-AM.jpg" alt="Preet More" class="w-full h-full object-cover">
+
+                    </div>
+
+                    <div class="w-full max-w-md bg-white bg-opacity-20 p-4 rounded-lg backdrop-blur-sm">
+
+                        <video controls class="w-full rounded-lg">
+
+                            <source src="https://videocdn.cdnpk.net/videos/fd0545e5-0ddc-44d7-ab40-92a3254cf6c4/horizontal/previews/clear/large.mp4?token=exp=1747948405~hmac=7a988ad6ccc8ebb5445ee674b9c12f4287a2aabf864ab69e7435aa3cf53a035e" type="video/mp4">
+
+                            Your browser does not support the video tag.
+
+                        </video>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- About Section -->
+
+        <section id="about" class="py-16 px-4 bg-gray-50 dark:bg-gray-900">
+
+            <div class="container mx-auto">
+
+                <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
+
+                
+
+                <div class="flex flex-col md:flex-row gap-8">
+
+                    <div class="md:w-1/2 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg animate-fade-in">
+
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Personal Information</h3>
+
+                        <div class="space-y-4">
+
+                            <div class="flex items-start">
+
+                                <i class="fas fa-user mt-1 mr-3 text-blue-500"></i>
+
+                                <div>
+
+                                    <h4 class="font-medium">Name</h4>
+
+                                    <p class="text-gray-600 dark:text-gray-300">Preet More</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start">
+
+                                <i class="fas fa-map-marker-alt mt-1 mr-3 text-blue-500"></i>
+
+                                <div>
+
+                                    <h4 class="font-medium">Location</h4>
+
+                                    <p class="text-gray-600 dark:text-gray-300">Dahanu, Maharashtra, India</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start">
+
+                                <i class="fas fa-graduation-cap mt-1 mr-3 text-blue-500"></i>
+
+                                <div>
+
+                                    <h4 class="font-medium">Education</h4>
+
+                                    <p class="text-gray-600 dark:text-gray-300">Bachelor's in Electronics & Computer Science</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start">
+
+                                <i class="fas fa-language mt-1 mr-3 text-blue-500"></i>
+
+                                <div>
+
+                                    <h4 class="font-medium">Known Languages</h4>
+
+                                    <p class="text-gray-600 dark:text-gray-300">English, Hindi, Marathi</p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    <div class="md:w-1/2 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg animate-fade-in">
+
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Skills & Expertise</h3>
+
+                        <div class="space-y-4">
+
+                            <div>
+
+                                <h4 class="font-medium mb-2">Programming Languages</h4>
+
+                                <div class="flex flex-wrap gap-2">
+
+                                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">Python</span>
+
+                                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">JavaScript</span>
+
+                                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">C++</span>
+
+                                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">Java</span>
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium mb-2">Web Development</h4>
+
+                                <div class="flex flex-wrap gap-2">
+
+                                    <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">HTML/CSS</span>
+
+                                    <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">React</span>
+
+                                    <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">Node.js</span>
+
+                                    <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">MongoDB</span>
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium mb-2">Electronics</h4>
+
+                                <div class="flex flex-wrap gap-2">
+
+                                    <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm">Embedded Systems</span>
+
+                                    <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm">Arduino</span>
+
+                                    <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm">IoT</span>
+
+                                    <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm">Circuit Design</span>
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium mb-2">Other Skills</h4>
+
+                                <div class="flex flex-wrap gap-2">
+
+                                    <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm">Problem Solving</span>
+
+                                    <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm">Teamwork</span>
+
+                                    <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm">Communication</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Achievements Section -->
+
+        <section id="achievements" class="py-16 px-4 bg-white dark:bg-gray-800">
+
+            <div class="container mx-auto">
+
+                <h2 class="text-3xl font-bold text-center mb-12">My Achievements</h2>
+
+                
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md transition-all duration-300 card-hover animate-slide-up">
+
+                        <div class="text-blue-500 text-4xl mb-4">
+
+                            <i class="fas fa-trophy"></i>
+
+                        </div>
+
+                        <h3 class="text-xl font-semibold mb-2">Academic Excellence</h3>
+
+                        <p class="text-gray-600 dark:text-gray-300">Secured top 5% in university examinations for three consecutive years.</p>
+
+                    </div>
+
+                    
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md transition-all duration-300 card-hover animate-slide-up">
+
+                        <div class="text-blue-500 text-4xl mb-4">
+
+                            <i class="fas fa-laptop-code"></i>
+
+                        </div>
+
+                        <h3 class="text-xl font-semibold mb-2">Hackathon Winner</h3>
+
+                        <p class="text-gray-600 dark:text-gray-300">Winner in cricket in 2024.</p>
+
+                    </div>
+
+                    
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md transition-all duration-300 card-hover animate-slide-up">
+
+                        <div class="text-blue-500 text-4xl mb-4">
+
+                            <i class="fas fa-project-diagram"></i>
+
+                        </div>
+
+                        <h3 class="text-xl font-semibold mb-2">Final Year Project</h3>
+
+                        <p class="text-gray-600 dark:text-gray-300">Developed a machine learning model for early detection of plant diseases with 92% accuracy.</p>
+
+                    </div>
+
+                    
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md transition-all duration-300 card-hover animate-slide-up">
+
+                        <div class="text-blue-500 text-4xl mb-4">
+
+                            <i class="fas fa-certificate"></i>
+
+                        </div>
+
+                        <h3 class="text-xl font-semibold mb-2">Certifications</h3>
+
+                        <p class="text-gray-600 dark:text-gray-300">Completed 1st project on waste segregation, Machine Learning, and Embedded Systems from reputed platforms.</p>
+
+                    </div>
+
+                    
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md transition-all duration-300 card-hover animate-slide-up">
+
+                        <div class="text-blue-500 text-4xl mb-4">
+
+                            <i class="fas fa-users"></i>
+
+                        </div>
+
+                        <h3 class="text-xl font-semibold mb-2">Technical Club Lead</h3>
+
+                        <p class="text-gray-600 dark:text-gray-300">Led the college's technical club, organizing workshops and seminars attended by 200+ students.</p>
+
+                    </div>
+
+                    
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md transition-all duration-300 card-hover animate-slide-up">
+
+                        <div class="text-blue-500 text-4xl mb-4">
+
+                            <i class="fas fa-book"></i>
+
+                        </div>
+
+                        <h3 class="text-xl font-semibold mb-2">Research Paper</h3>
+
+                        <p class="text-gray-600 dark:text-gray-300">Published a paper on "Energy-Efficient IoT Devices" in college's annual technical journal.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Future Goals Section -->
+
+        <section id="goals" class="py-16 px-4 bg-gray-50 dark:bg-gray-900">
+
+            <div class="container mx-auto">
+
+                <h2 class="text-3xl font-bold text-center mb-12">Future Goals</h2>
+
+                
+
+                <div class="max-w-4xl mx-auto">
+
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg mb-8 animate-fade-in">
+
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Professional Aspirations</h3>
+
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+
+                            I aim to become a skilled engineer who bridges the gap between hardware and software. My goal is to work on cutting-edge technologies that solve real-world problems, particularly in the domains of IoT, AI, and sustainable technology.
+
+                        </p>
+
+                        <p class="text-gray-600 dark:text-gray-300">
+
+                            In the next 5 years, I see myself leading innovative projects that make technology more accessible to rural communities, especially in agricultural applications.
+
+                        </p>
+
+                    </div>
+
+                    
+
+                    <div class="grid md:grid-cols-2 gap-8">
+
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg animate-slide-up">
+
+                            <h3 class="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">Short-term Goals</h3>
+
+                            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+
+                                <li class="flex items-start">
+
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+
+                                    <span>Master advanced programming concepts</span>
+
+                                </li>
+
+                                <li class="flex items-start">
+
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+
+                                    <span>Gain hands-on experience with IoT projects</span>
+
+                                </li>
+
+                                <li class="flex items-start">
+
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+
+                                    <span>Contribute to open-source projects</span>
+
+                                </li>
+
+                                <li class="flex items-start">
+
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+
+                                    <span>Build a professional network in the tech industry</span>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        
+
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg animate-slide-up">
+
+                            <h3 class="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">Long-term Vision</h3>
+
+                            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+
+                                <li class="flex items-start">
+
+                                    <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+
+                                    <span>Establish a tech startup focused on agricultural solutions</span>
+
+                                </li>
+
+                                <li class="flex items-start">
+
+                                    <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+
+                                    <span>Develop affordable tech solutions for rural India</span>
+
+                                </li>
+
+                                <li class="flex items-start">
+
+                                    <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+
+                                    <span>Mentor young students in STEM fields</span>
+
+                                </li>
+
+                                <li class="flex items-start">
+
+                                    <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+
+                                    <span>Contribute to sustainable technology development</span>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Personal Side Section -->
+
+        <section id="personal" class="py-16 px-4 bg-white dark:bg-gray-800">
+
+            <div class="container mx-auto">
+
+                <h2 class="text-3xl font-bold text-center mb-12">Personal Side</h2>
+
+                
+
+                <div class="grid md:grid-cols-2 gap-8">
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl shadow-lg animate-fade-in">
+
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Hobbies & Interests</h3>
+
+                        <div class="space-y-4">
+
+                            <div>
+
+                                <h4 class="font-medium">Electronics Tinkering</h4>
+
+                                <p class="text-gray-600 dark:text-gray-300">I love working with Arduino and to create small projects. There's something magical about bringing hardware to life with code.</p>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium">Reading</h4>
+
+                                <p class="text-gray-600 dark:text-gray-300">I enjoy reading and photography, science, and philosophy. and also i have interest in cricket.</p>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium">Photography</h4>
+
+                                <p class="text-gray-600 dark:text-gray-300">Capturing moments and landscapes helps me appreciate the beauty in everyday life and improves my attention to detail.</p>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium">Chess</h4>
+
+                                <p class="text-gray-600 dark:text-gray-300">Playing cricket give me strength and physical benefits and also improves in my skills.</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-8 rounded-xl shadow-lg animate-fade-in">
+
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Inspirations & Favorites</h3>
+
+                        <div class="space-y-6">
+
+                            <div>
+
+                                <h4 class="font-medium">Role Models</h4>
+
+                                <p class="text-gray-600 dark:text-gray-300">
+
+                                    <span class="font-semibold">Dr. APJ Abdul Kalam and virat kohli</span> for his vision and dedication to education and technology. 
+
+                                    <span class="font-semibold">Elon Musk</span> for pushing technological boundaries. 
+
+                               
+
+                                </p>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium">Favorite Books</h4>
+
+                                <p class="text-gray-600 dark:text-gray-300">
+
+                                    <span class="font-semibold">"Wings of Fire"</span> by APJ Abdul Kalam, 
+
+                                    <span class="font-semibold">"The Innovators"</span> by Walter Isaacson, 
+
+                                    <span class="font-semibold">"Atomic Habits"</span> by James Clear
+
+                                </p>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium">Favorite Websites</h4>
+
+                                <p class="text-gray-600 dark:text-gray-300">
+
+                                    <span class="font-semibold">Hackaday</span> for tech projects, 
+
+                                    <span class="font-semibold">ArXiv</span> for research papers, 
+
+                                    <span class="font-semibold">Dev.to</span> for developer community
+
+                                </p>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-medium">Volunteering</h4>
+
+                                <p class="text-gray-600 dark:text-gray-300">
+
+                                    Taught basic computer skills to underprivileged children at local NGO. Organized tech awareness camps in rural areas near Dahanu.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        <!-- Contact Section -->
+
+        <section id="contact" class="py-16 px-4 bg-blue-600 dark:bg-blue-800 text-white">
+
+            <div class="container mx-auto">
+
+                <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
+
+                
+
+                <div class="grid md:grid-cols-2 gap-8">
+
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-gray-800 dark:text-gray-100 animate-fade-in">
+
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-600 dark:text-blue-400">Contact Information</h3>
+
+                        <div class="space-y-4">
+
+                            <div class="flex items-start">
+
+                                <i class="fas fa-phone-alt mt-1 mr-3 text-blue-500"></i>
+
+                                <div>
+
+                                    <h4 class="font-medium">Phone</h4>
+
+                                    <a href="tel:+917709739684" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition">+91 7709739684</a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start">
+
+                                <i class="fab fa-whatsapp mt-1 mr-3 text-green-500"></i>
+
+                                <div>
+
+                                    <h4 class="font-medium">WhatsApp</h4>
+
+                                    <a href="https://wa.me/7709739684" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-green-500 transition">Chat on WhatsApp</a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start">
+
+                                <i class="fas fa-envelope mt-1 mr-3 text-red-500"></i>
+
+                                <div>
+
+                                    <h4 class="font-medium">Email</h4>
+
+                                    <a href="mailto:preetmore1456@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-red-500 transition">preetmore1456@gmail.com</a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start">
+
+                                <i class="fas fa-map-marker-alt mt-1 mr-3 text-yellow-500"></i>
+
+                                <div>
+
+                                    <h4 class="font-medium">Location</h4>
+
+                                    <p class="text-gray-600 dark:text-gray-300">Dahanu, Maharashtra, India</p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <div class="mt-8">
+
+                            <h4 class="font-medium mb-4">Connect with me</h4>
+
+                            <div class="flex space-x-4">
+
+                                <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-blue-500 hover:text-white transition">
+
+                                    <i class="fab fa-linkedin-in"></i>
+
+                                </a>
+
+                                <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-pink-500 hover:text-white transition">
+
+                                    <i class="fab fa-instagram"></i>
+
+                                </a>
+
+                                <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-blue-400 hover:text-white transition">
+
+                                    <i class="fab fa-twitter"></i>
+
+                                </a>
+
+                                <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-800 hover:text-white transition">
+
+                                    <i class="fab fa-github"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    <div class="animate-fade-in">
+
+                        <h3 class="text-2xl font-semibold mb-6">Location</h3>
+
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg">
+
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.222041320962!2d72.7329973147316!3d19.28599938699653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b0d6e771d36b%3A0x6a7a5aff02dd8a1a!2sDahanu%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg"></iframe>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Shop Section -->
+
+        <section id="shop" class="py-16 px-4 bg-gray-50 dark:bg-gray-900">
+
+            <div class="container mx-auto">
+
+                <h2 class="text-3xl font-bold text-center mb-12">Tech Shop</h2>
+
+                
+
+                <div class="flex justify-between items-center mb-8">
+
+                    <h3 class="text-xl font-semibold">Featured Products</h3>
+
+                    <div class="flex items-center space-x-4">
+
+                        <button id="viewCartBtn" class="relative px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+
+                            <i class="fas fa-shopping-cart mr-2"></i>Cart
+
+                            <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+
+                        </button>
+
+                        <div class="relative">
+
+                            <input type="text" placeholder="Search products..." class="pl-10 pr-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700">
+
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                    <!-- Product 1 -->
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 product-card">
+
+                        <div class="relative h-48 overflow-hidden">
+
+                            <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Arduino Starter Kit" class="w-full h-full object-cover">
+
+                            <div class="product-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+
+                                <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" data-id="1" data-name="Arduino Starter Kit" data-price="1999">
+
+                                    <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="p-4">
+
+                            <h3 class="font-semibold text-lg mb-1">Arduino Starter Kit</h3>
+
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Complete kit for beginners with 15+ projects</p>
+
+                            <div class="flex justify-between items-center">
+
+                                <span class="font-bold text-blue-600 dark:text-blue-400">₹1,999</span>
+
+                                <div class="flex items-center text-yellow-400">
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star-half-alt"></i>
+
+                                    <span class="text-gray-500 dark:text-gray-300 text-sm ml-1">4.5</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    <!-- Product 2 -->
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 product-card">
+
+                        <div class="relative h-48 overflow-hidden">
+
+                            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1626&q=80" alt="Raspberry Pi 4" class="w-full h-full object-cover">
+
+                            <div class="product-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+
+                                <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" data-id="2" data-name="Raspberry Pi 4" data-price="3499">
+
+                                    <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="p-4">
+
+                            <h3 class="font-semibold text-lg mb-1">Raspberry Pi 4</h3>
+
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">4GB RAM model with official case</p>
+
+                            <div class="flex justify-between items-center">
+
+                                <span class="font-bold text-blue-600 dark:text-blue-400">₹3,499</span>
+
+                                <div class="flex items-center text-yellow-400">
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <span class="text-gray-500 dark:text-gray-300 text-sm ml-1">5.0</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    <!-- Product 3 -->
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 product-card">
+
+                        <div class="relative h-48 overflow-hidden">
+
+                            <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1575&q=80" alt="IoT Development Kit" class="w-full h-full object-cover">
+
+                            <div class="product-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+
+                                <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" data-id="3" data-name="IoT Development Kit" data-price="4999">
+
+                                    <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="p-4">
+
+                            <h3 class="font-semibold text-lg mb-1">IoT Development Kit</h3>
+
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Complete kit with sensors and ESP32</p>
+
+                            <div class="flex justify-between items-center">
+
+                                <span class="font-bold text-blue-600 dark:text-blue-400">₹4,999</span>
+
+                                <div class="flex items-center text-yellow-400">
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="far fa-star"></i>
+
+                                    <span class="text-gray-500 dark:text-gray-300 text-sm ml-1">4.0</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                    <!-- Product 4 -->
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 product-card">
+
+                        <div class="relative h-48 overflow-hidden">
+
+                            <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" alt="Wireless Keyboard & Mouse" class="w-full h-full object-cover">
+
+                            <div class="product-overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+
+                                <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" data-id="4" data-name="Wireless Keyboard & Mouse" data-price="1299">
+
+                                    <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="p-4">
+
+                            <h3 class="font-semibold text-lg mb-1">Wireless Keyboard & Mouse</h3>
+
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Ergonomic design with 2.4GHz connectivity</p>
+
+                            <div class="flex justify-between items-center">
+
+                                <span class="font-bold text-blue-600 dark:text-blue-400">₹1,299</span>
+
+                                <div class="flex items-center text-yellow-400">
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star"></i>
+
+                                    <i class="fas fa-star-half-alt"></i>
+
+                                    <span class="text-gray-500 dark:text-gray-300 text-sm ml-1">4.5</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- View All Button -->
+
+                <div class="text-center mt-10">
+
+                    <button class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+
+                        View All Products <i class="fas fa-arrow-right ml-2"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Cart Sidebar -->
+
+        <div id="cartSidebar" class="cart-sidebar fixed top-0 right-0 w-full md:w-96 h-full bg-white dark:bg-gray-800 shadow-2xl z-50 overflow-y-auto">
+
+            <div class="p-6">
+
+                <div class="flex justify-between items-center mb-6">
+
+                    <h3 class="text-xl font-semibold">Your Cart</h3>
+
+                    <button id="closeCartBtn" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+
+                        <i class="fas fa-times text-2xl"></i>
+
+                    </button>
+
+                </div>
+
+                
+
+                <div id="cartItems" class="space-y-4">
+
+                    <!-- Cart items will be added here dynamically -->
+
+                    <p class="text-gray-500 text-center py-10">Your cart is empty</p>
+
+                </div>
+
+                
+
+                <div class="border-t border-gray-200 dark:border-gray-700 mt-6 pt-6">
+
+                    <div class="flex justify-between mb-2">
+
+                        <span class="font-medium">Subtotal</span>
+
+                        <span id="cartSubtotal" class="font-semibold">₹0</span>
+
+                    </div>
+
+                    <div class="flex justify-between mb-2">
+
+                        <span class="font-medium">Shipping</span>
+
+                        <span class="font-semibold">₹99</span>
+
+                    </div>
+
+                    <div class="flex justify-between text-lg font-bold mt-4">
+
+                        <span>Total</span>
+
+                        <span id="cartTotal" class="text-blue-600 dark:text-blue-400">₹99</span>
+
+                    </div>
+
+                    
+
+                    <button id="checkoutBtn" class="w-full mt-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+
+                        Proceed to Checkout <i class="fas fa-arrow-right ml-2"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
-        <div>
-          <iframe
-            class="w-full h-64 rounded-lg border-2 border-gold shadow-lg"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.5183612432733!2d72.73474221490066!3d19.9673705865767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be75b2dd153471b%3A0x998c3c7f3964a!2sDahanu%2C%20Maharashtra%20401401%2C%20India!5e0!3m2!1sen!2sin!4v1620314087873!5m2!1sen!2sin"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+
+        <div id="cartOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
+    </main>
+
+
+
+    <!-- Footer -->
+
+    <footer class="bg-gray-800 text-white py-12 px-4">
+
+        <div class="container mx-auto">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+                <div>
+
+                    <h3 class="text-xl font-semibold mb-4">Preet More</h3>
+
+                    <p class="text-gray-400">Electronics & Computer Science student passionate about technology and innovation.</p>
+
+                    <div class="flex space-x-4 mt-4">
+
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
+
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div>
+
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+
+                    <ul class="space-y-2">
+
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+
+                        <li><a href="#achievements" class="text-gray-400 hover:text-white transition">Achievements</a></li>
+
+                        <li><a href="#goals" class="text-gray-400 hover:text-white transition">Future Goals</a></li>
+
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+
+                    </ul>
+
+                </div>
+
+                
+
+                <div>
+
+                    <h3 class="text-lg font-semibold mb-4">Shop</h3>
+
+                    <ul class="space-y-2">
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">All Products</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Arduino Kits</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Raspberry Pi</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">IoT Devices</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accessories</a></li>
+
+                    </ul>
+
+                </div>
+
+                
+
+                <div>
+
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+
+                    <ul class="space-y-2">
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Refund Policy</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
+
+                <p>&copy; 2023 Preet More. All rights reserved.</p>
+
+            </div>
+
         </div>
-      </div>
+
+    </footer>
+
+
+
+    <!-- Cookies Consent -->
+
+    <div id="cookiesConsent" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 shadow-lg z-50 hidden">
+
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+
+            <p class="mb-4 md:mb-0">We use cookies to ensure you get the best experience on our website. <a href="#" class="text-blue-400 hover:underline">Learn more</a></p>
+
+            <div class="flex space-x-4">
+
+                <button id="acceptCookies" class="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">Accept</button>
+
+                <button id="declineCookies" class="px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-700 transition">Decline</button>
+
+            </div>
+
+        </div>
+
     </div>
-  </section>
 
-  <!-- Back to Top Button -->
-  <button id="backToTop" onclick="scrollToTop()" class="fixed bottom-6 right-6 bg-gold text-black font-bold p-3 rounded-full shadow-lg hover:bg-yellow-500 transition-all duration-300 z-50 hidden items-center justify-center">
-    ↑
-  </button>
 
-  <!-- Footer -->
-  <footer class="bg-[#0d0d0d] border-t border-gold text-white py-6 text-center mt-8">
-    <p class="text-lg font-semibold text-gold">Made with ❤️ by Preet More | © 2025</p>
-    <p class="mt-2 text-sm text-gray-400">
-      <a href="https://github.com/yourusername" target="_blank" class="underline hover:text-gold">GitHub</a> |
-      <a href="https://linkedin.com/in/yourusername" target="_blank" class="underline hover:text-gold">LinkedIn</a>
-    </p>
-  </footer>
 
-  <!-- Tailwind Config -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            gold: '#D4AF37',
-          },
-        },
-      },
-    }
-  </script>
+    <script>
 
-  <!-- Back to Top and Menu JavaScript -->
-  <script>
-    // Show/hide Back to Top button based on scroll
-    window.addEventListener('scroll', () => {
-      const backToTop = document.getElementById('backToTop');
-      if (window.scrollY > 300) {
-        backToTop.classList.add('show');
-        backToTop.classList.remove('hidden');
-      } else {
-        backToTop.classList.remove('show');
-        backToTop.classList.add('hidden');
-      }
-    });
+        // Wait for DOM to be fully loaded
 
-    // Scroll to top smoothly
-    function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
+        document.addEventListener('DOMContentLoaded', function() {
 
-    // Toggle mobile menu visibility
-    const menuButton = document.getElementById('menuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOpenIcon = document.getElementById('menuOpenIcon');
-    const menuCloseIcon = document.getElementById('menuCloseIcon');
+            // Hide loading spinner
 
-    menuButton.addEventListener('click', () => {
-      if (mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.remove('hidden');
-        menuOpenIcon.classList.add('hidden');
-        menuCloseIcon.classList.remove('hidden');
-      } else {
-        mobileMenu.classList.add('hidden');
-        menuOpenIcon.classList.remove('hidden');
-        menuCloseIcon.classList.add('hidden');
-      }
-    });
+            setTimeout(() => {
 
-    // Close menu when clicking a link
-    function closeMenu() {
-      mobileMenu.classList.add('hidden');
-      menuOpenIcon.classList.remove('hidden');
-      menuCloseIcon.classList.add('hidden');
-    }
-  </script>
+                document.getElementById('loading').style.display = 'none';
+
+            }, 1000);
+
+            
+
+            // Mobile menu toggle
+
+            const hamburger = document.getElementById('hamburger');
+
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            
+
+            hamburger.addEventListener('click', () => {
+
+                hamburger.classList.toggle('open');
+
+                mobileMenu.classList.toggle('hidden');
+
+            });
+
+            
+
+            // Dark mode toggle
+
+            const themeToggle = document.getElementById('themeToggle');
+
+            const html = document.documentElement;
+
+            
+
+            // Check for saved theme preference
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+
+            html.classList.add(savedTheme);
+
+            
+
+            themeToggle.addEventListener('click', () => {
+
+                html.classList.toggle('dark');
+
+                const theme = html.classList.contains('dark') ? 'dark' : 'light';
+
+                localStorage.setItem('theme', theme);
+
+            });
+
+            
+
+            // Scroll to top button
+
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+
+            
+
+            window.addEventListener('scroll', () => {
+
+                if (window.pageYOffset > 300) {
+
+                    scrollToTopBtn.classList.add('visible');
+
+                } else {
+
+                    scrollToTopBtn.classList.remove('visible');
+
+                }
+
+            });
+
+            
+
+            scrollToTopBtn.addEventListener('click', () => {
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: 'smooth'
+
+                });
+
+            });
+
+            
+
+            // Smooth scrolling for navigation links
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+                anchor.addEventListener('click', function(e) {
+
+                    e.preventDefault();
+
+                    
+
+                    const targetId = this.getAttribute('href');
+
+                    if (targetId === '#') return;
+
+                    
+
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+
+                        window.scrollTo({
+
+                            top: targetElement.offsetTop - 80,
+
+                            behavior: 'smooth'
+
+                        });
+
+                        
+
+                        // Close mobile menu if open
+
+                        if (!mobileMenu.classList.contains('hidden')) {
+
+                            hamburger.classList.remove('open');
+
+                            mobileMenu.classList.add('hidden');
+
+                        }
+
+                    }
+
+                });
+
+            });
+
+            
+
+            // Cart functionality
+
+            const viewCartBtn = document.getElementById('viewCartBtn');
+
+            const closeCartBtn = document.getElementById('closeCartBtn');
+
+            const cartSidebar = document.getElementById('cartSidebar');
+
+            const cartOverlay = document.getElementById('cartOverlay');
+
+            const cartItemsContainer = document.getElementById('cartItems');
+
+            const cartSubtotal = document.getElementById('cartSubtotal');
+
+            const cartTotal = document.getElementById('cartTotal');
+
+            const cartCount = document.getElementById('cartCount');
+
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+            
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            
+
+            // Update cart UI
+
+            function updateCartUI() {
+
+                cartItemsContainer.innerHTML = '';
+
+                
+
+                if (cart.length === 0) {
+
+                    cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center py-10">Your cart is empty</p>';
+
+                    cartSubtotal.textContent = '₹0';
+
+                    cartTotal.textContent = '₹99';
+
+                    cartCount.textContent = '0';
+
+                    return;
+
+                }
+
+                
+
+                let subtotal = 0;
+
+                
+
+                cart.forEach(item => {
+
+                    subtotal += item.price * item.quantity;
+
+                    
+
+                    const cartItem = document.createElement('div');
+
+                    cartItem.className = 'flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-4';
+
+                    cartItem.innerHTML = `
+
+                        <div class="flex items-center">
+
+                            <img src="https://via.placeholder.com/60" alt="${item.name}" class="w-12 h-12 object-cover rounded mr-4">
+
+                            <div>
+
+                                <h4 class="font-medium">${item.name}</h4>
+
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">₹${item.price}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-center">
+
+                            <button class="decrease-quantity px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded" data-id="${item.id}">-</button>
+
+                            <span class="mx-2">${item.quantity}</span>
+
+                            <button class="increase-quantity px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded" data-id="${item.id}">+</button>
+
+                            <button class="remove-item ml-4 text-red-500" data-id="${item.id}">
+
+                                <i class="fas fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+                    
+
+                    cartItemsContainer.appendChild(cartItem);
+
+                });
+
+                
+
+                cartSubtotal.textContent = `₹${subtotal}`;
+
+                cartTotal.textContent = `₹${subtotal + 99}`;
+
+                cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+
+                
+
+                // Add event listeners to new buttons
+
+                document.querySelectorAll('.decrease-quantity').forEach(btn => {
+
+                    btn.addEventListener('click', function() {
+
+                        const id = this.getAttribute('data-id');
+
+                        updateCartItem(id, -1);
+
+                    });
+
+                });
+
+                
+
+                document.querySelectorAll('.increase-quantity').forEach(btn => {
+
+                    btn.addEventListener('click', function() {
+
+                        const id = this.getAttribute('data-id');
+
+                        updateCartItem(id, 1);
+
+                    });
+
+                });
+
+                
+
+                document.querySelectorAll('.remove-item').forEach(btn => {
+
+                    btn.addEventListener('click', function() {
+
+                        const id = this.getAttribute('data-id');
+
+                        removeCartItem(id);
+
+                    });
+
+                });
+
+            }
+
+            
+
+            // Update cart item quantity
+
+            function updateCartItem(id, change) {
+
+                const index = cart.findIndex(item => item.id === id);
+
+                
+
+                if (index !== -1) {
+
+                    cart[index].quantity += change;
+
+                    
+
+                    if (cart[index].quantity <= 0) {
+
+                        cart.splice(index, 1);
+
+                    }
+
+                    
+
+                    saveCart();
+
+                    updateCartUI();
+
+                }
+
+            }
+
+            
+
+            // Remove cart item
+
+            function removeCartItem(id) {
+
+                cart = cart.filter(item => item.id !== id);
+
+                saveCart();
+
+                updateCartUI();
+
+            }
+
+            
+
+            // Save cart to localStorage
+
+            function saveCart() {
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+            }
+
+            
+
+            // Add to cart
+
+            addToCartButtons.forEach(button => {
+
+                button.addEventListener('click', function() {
+
+                    const id = this.getAttribute('data-id');
+
+                    const name = this.getAttribute('data-name');
+
+                    const price = parseInt(this.getAttribute('data-price'));
+
+                    
+
+                    // Check if item already in cart
+
+                    const existingItem = cart.find(item => item.id === id);
+
+                    
+
+                    if (existingItem) {
+
+                        existingItem.quantity += 1;
+
+                    } else {
+
+                        cart.push({
+
+                            id,
+
+                            name,
+
+                            price,
+
+                            quantity: 1
+
+                        });
+
+                    }
+
+                    
+
+                    saveCart();
+
+                    updateCartUI();
+
+                    
+
+                    // Show cart sidebar
+
+                    cartSidebar.classList.add('open');
+
+                    cartOverlay.classList.remove('hidden');
+
+                    
+
+                    // Show notification
+
+                    const notification = document.createElement('div');
+
+                    notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center';
+
+                    notification.innerHTML = `
+
+                        <i class="fas fa-check-circle mr-2"></i>
+
+                        <span>${name} added to cart!</span>
+
+                    `;
+
+                    document.body.appendChild(notification);
+
+                    
+
+                    setTimeout(() => {
+
+                        notification.style.opacity = '0';
+
+                        setTimeout(() => {
+
+                            document.body.removeChild(notification);
+
+                        }, 300);
+
+                    }, 3000);
+
+                });
+
+            });
+
+            
+
+            // Toggle cart sidebar
+
+            viewCartBtn.addEventListener('click', () => {
+
+                cartSidebar.classList.add('open');
+
+                cartOverlay.classList.remove('hidden');
+
+            });
+
+            
+
+            closeCartBtn.addEventListener('click', () => {
+
+                cartSidebar.classList.remove('open');
+
+                cartOverlay.classList.add('hidden');
+
+            });
+
+            
+
+            cartOverlay.addEventListener('click', () => {
+
+                cartSidebar.classList.remove('open');
+
+                cartOverlay.classList.add('hidden');
+
+            });
+
+            
+
+            // Checkout button
+
+            document.getElementById('checkoutBtn').addEventListener('click', () => {
+
+                alert('Checkout functionality would be implemented here!');
+
+            });
+
+            
+
+            // Initialize cart UI
+
+            updateCartUI();
+
+            
+
+            // Cookies consent
+
+            const cookiesConsent = document.getElementById('cookiesConsent');
+
+            const acceptCookies = document.getElementById('acceptCookies');
+
+            const declineCookies = document.getElementById('declineCookies');
+
+            
+
+            if (!localStorage.getItem('cookiesAccepted')) {
+
+                setTimeout(() => {
+
+                    cookiesConsent.classList.remove('hidden');
+
+                }, 2000);
+
+            }
+
+            
+
+            acceptCookies.addEventListener('click', () => {
+
+                localStorage.setItem('cookiesAccepted', 'true');
+
+                cookiesConsent.classList.add('hidden');
+
+            });
+
+            
+
+            declineCookies.addEventListener('click', () => {
+
+                localStorage.setItem('cookiesAccepted', 'false');
+
+                cookiesConsent.classList.add('hidden');
+
+            });
+
+            
+
+            // Fetch API data (using JSONPlaceholder as example)
+
+            fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    const apiDataContainer = document.getElementById('apiData');
+
+                    
+
+                    data.forEach(post => {
+
+                        const card = document.createElement('div');
+
+                        card.className = 'bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300 card-hover animate-slide-up';
+
+                        card.innerHTML = `
+
+                            <h3 class="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">${post.title}</h3>
+
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">${post.body.substring(0, 100)}...</p>
+
+                            <div class="flex justify-between items-center text-sm">
+
+                                <span class="text-gray-500 dark:text-gray-400">Post ID: ${post.id}</span>
+
+                                <a href="#" class="text-blue-500 hover:underline">Read more</a>
+
+                            </div>
+
+                        `;
+
+                        
+
+                        apiDataContainer.appendChild(card);
+
+                    });
+
+                })
+
+                .catch(error => {
+
+                    console.error('Error fetching API data:', error);
+
+                    document.getElementById('apiData').innerHTML = `
+
+                        <div class="col-span-full text-center py-10">
+
+                            <p class="text-red-500">Failed to load data. Please try again later.</p>
+
+                        </div>
+
+                    `;
+
+                });
+
+            
+
+            // Scroll animations
+
+            const animateOnScroll = () => {
+
+                const elements = document.querySelectorAll('.animate-slide-up, .animate-fade-in');
+
+                
+
+                elements.forEach(element => {
+
+                    const elementPosition = element.getBoundingClientRect().top;
+
+                    const screenPosition = window.innerHeight / 1.2;
+
+                    
+
+                    if (elementPosition < screenPosition) {
+
+                        element.style.opacity = '1';
+
+                        element.style.transform = 'translateY(0)';
+
+                    }
+
+                });
+
+            };
+
+            
+
+            // Initial check
+
+            animateOnScroll();
+
+            
+
+            // Check on scroll
+
+            window.addEventListener('scroll', animateOnScroll);
+
+        });
+
+    </script>
 
 </body>
+
 </html>
